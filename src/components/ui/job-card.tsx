@@ -1,5 +1,5 @@
 
-import { Building2, MapPin, Banknote, Calendar } from "lucide-react"
+import { Building2, MapPin, Banknote, Calendar, ArrowUpRight, BookmarkPlus, Share2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
@@ -26,34 +26,34 @@ export const JobCard = ({
 }: JobCardProps) => {
   return (
     <div className={cn(
-      "bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow",
+      "bg-white dark:bg-gray-800/50 p-6 rounded-xl shadow-sm border hover:shadow-md transition-all duration-300 hover:-translate-y-1",
       className
     )}>
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-          <div className="flex items-center text-gray-600 mb-2">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">{title}</h3>
+          <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
             <Building2 className="w-4 h-4 mr-2" />
-            <span>{company}</span>
+            <span className="font-medium">{company}</span>
           </div>
         </div>
         <span className={cn(
           "px-3 py-1 rounded-full text-sm font-medium",
-          type === "Remoto" ? "bg-green-100 text-green-800" :
-          type === "Híbrido" ? "bg-blue-100 text-blue-800" :
-          "bg-purple-100 text-purple-800"
+          type === "Remoto" ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" :
+          type === "Híbrido" ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" :
+          "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400"
         )}>
           {type}
         </span>
       </div>
       
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="flex items-center text-gray-600">
+        <div className="flex items-center text-gray-600 dark:text-gray-400">
           <MapPin className="w-4 h-4 mr-2" />
           <span>{location}</span>
         </div>
         
-        <div className="flex items-center text-gray-600">
+        <div className="flex items-center text-gray-600 dark:text-gray-400">
           <Banknote className="w-4 h-4 mr-2" />
           <span>{salary}</span>
         </div>
@@ -63,19 +63,30 @@ export const JobCard = ({
         {tags.map((tag) => (
           <span
             key={tag}
-            className="px-2 py-1 bg-gray-100 text-gray-600 text-sm rounded"
+            className="px-2.5 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center text-gray-500 text-sm">
+      <div className="flex items-center justify-between border-t dark:border-gray-700 pt-4 mt-2">
+        <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm">
           <Calendar className="w-4 h-4 mr-1" />
           <span>{postedAt}</span>
         </div>
-        <Button>Ver vaga</Button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+            <BookmarkPlus className="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+            <Share2 className="w-4 h-4" />
+          </Button>
+          <Button size="sm" className="gap-1">
+            Ver vaga
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
       </div>
     </div>
   );
