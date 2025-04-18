@@ -9,9 +9,9 @@ interface StatsCardProps {
 
 export function StatsCard({ label, value, icon }: StatsCardProps) {
   return (
-    <Card>
+    <Card className="hover:scale-105 transition-transform duration-300">
       <CardContent className="flex items-center p-6">
-        <div className="p-2 bg-purple-100 rounded-lg mr-4">
+        <div className="p-2 bg-purple-100 rounded-lg mr-4 hover:rotate-12 transition-transform">
           {icon}
         </div>
         <div>

@@ -64,33 +64,35 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 pt-24 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Encontre sua próxima oportunidade em tecnologia
+      {/* Hero Section with Animation */}
+      <section className="bg-gradient-to-r from-purple-600 to-blue-600 pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Vagas Brasil
             </h1>
             <p className="text-xl text-purple-100 mb-8">
-              As melhores vagas em tecnologia das principais empresas do Brasil
+              Conectando talentos às melhores oportunidades em tecnologia
             </p>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl mx-auto animate-scale-in">
               <SearchBar />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section with Animation */}
       <section className="container mx-auto px-4 -mt-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {stats.map((stat) => (
-            <StatsCard
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              icon={stat.icon}
-            />
+          {stats.map((stat, index) => (
+            <div key={stat.label} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+              <StatsCard
+                label={stat.label}
+                value={stat.value}
+                icon={stat.icon}
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -113,11 +115,12 @@ const Index = () => {
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-6">
-              {jobs.map((job) => (
-                <JobCard
-                  key={`${job.company}-${job.title}`}
-                  {...job}
-                />
+              {jobs.map((job, index) => (
+                <div key={`${job.company}-${job.title}`} 
+                     className="animate-fade-in" 
+                     style={{ animationDelay: `${index * 100}ms` }}>
+                  <JobCard {...job} />
+                </div>
               ))}
             </div>
           </main>
