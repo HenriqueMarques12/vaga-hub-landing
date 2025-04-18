@@ -1,10 +1,11 @@
-
 import { JobCard } from "@/components/ui/job-card"
 import { SearchBar } from "@/components/ui/search-bar"
 import { FilterSidebar } from "@/components/ui/filter-sidebar"
 import { Navbar } from "@/components/ui/navbar"
+import { StatsCard } from "@/components/ui/stats-card"
+import { FeaturedCompanies } from "@/components/ui/featured-companies"
+import { Briefcase, Building2, Users, Wallet } from "lucide-react"
 
-// Dados mockados para exemplo
 const jobs = [
   {
     title: "Desenvolvedor Frontend React",
@@ -35,6 +36,29 @@ const jobs = [
   },
 ];
 
+const stats = [
+  {
+    label: "Vagas Disponíveis",
+    value: "1.234+",
+    icon: <Briefcase className="w-5 h-5 text-purple-600" />
+  },
+  {
+    label: "Empresas Cadastradas",
+    value: "567",
+    icon: <Building2 className="w-5 h-5 text-purple-600" />
+  },
+  {
+    label: "Desenvolvedores",
+    value: "10k+",
+    icon: <Users className="w-5 h-5 text-purple-600" />
+  },
+  {
+    label: "Média Salarial",
+    value: "R$ 8.500",
+    icon: <Wallet className="w-5 h-5 text-purple-600" />
+  }
+]
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -43,29 +67,38 @@ const Index = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-purple-600 to-blue-600 pt-24 pb-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-8">
+          <div className="max-w-3xl mx-auto text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Encontre sua próxima oportunidade em tecnologia
             </h1>
             <p className="text-xl text-purple-100 mb-8">
-              Conectamos você às melhores empresas de tecnologia do Brasil
+              As melhores vagas em tecnologia das principais empresas do Brasil
             </p>
             <div className="max-w-2xl mx-auto">
               <SearchBar />
             </div>
           </div>
-          
-          <div className="flex justify-center gap-4 text-white">
-            <p className="text-purple-100">
-              <span className="font-semibold text-white">1.234</span> vagas disponíveis
-            </p>
-            <span className="text-purple-300">•</span>
-            <p className="text-purple-100">
-              <span className="font-semibold text-white">567</span> empresas cadastradas
-            </p>
-          </div>
         </div>
       </section>
+
+      {/* Stats Section */}
+      <section className="container mx-auto px-4 -mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {stats.map((stat) => (
+            <StatsCard
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              icon={stat.icon}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Companies */}
+      <div className="container mx-auto px-4">
+        <FeaturedCompanies />
+      </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
@@ -73,9 +106,10 @@ const Index = () => {
           <FilterSidebar />
           
           <main className="flex-1">
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Vagas em destaque
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-purple-600" />
+                Vagas em Destaque
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-6">
